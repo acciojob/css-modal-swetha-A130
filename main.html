@@ -1,24 +1,111 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Modal Example</title>
+  <style>
+    /* Basic page styling */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
 
+    /* Button styling */
+    #openModal {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Modal background overlay */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modal content box */
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Modal header styling */
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    /* Close button styling */
+    .close-modal {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #aaa;
+    }
+
+    .close-modal:hover {
+      color: #000;
+    }
+  </style>
+</head>
 <body>
-	<button id="openModal">Open Modal</button>
-<div class="modal">
+
+<!-- Open Modal Button -->
+<button id="openModal">Open Modal</button>
+
+<!-- Modal Structure -->
+<div class="modal" id="myModal">
   <div class="modal-content">
     <div class="modal-header">
       <h2>Modal Header</h2>
-   </div>
+      <span class="close-modal" id="closeModal">&times;</span>
+    </div>
     <div class="modal-body">
       <p>Modal Body Content</p>
-		   <button class="close-modal">Close</button>
     </div>
   </div>
 </div>
-<script src="script.js"></script>
+
+<!-- JavaScript to handle modal open and close -->
+<script>
+  const openModalBtn = document.getElementById('openModal');
+  const modal = document.getElementById('myModal');
+  const closeModalBtn = document.getElementById('closeModal');
+
+  // Open modal on button click
+  openModalBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  // Close modal on close button click
+  closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Close modal when clicking outside the modal content
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
 </body>
 </html>
